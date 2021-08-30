@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'grid_column_quantity_picker.dart';
@@ -76,7 +77,7 @@ class _DashboardHomePageState extends State<DashboardHomePage> {
               shrinkWrap: true,
               itemCount: 10,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: itemcount,
+                crossAxisCount: column.toInt(),
               ),
               itemBuilder: (context, index) {
                 Color randamColor =
@@ -138,8 +139,38 @@ class _DashboardHomePageState extends State<DashboardHomePage> {
     // this will contain the result from Navigator.pop(context, result)
     final selectedTotalColumns = await showDialog<double>(
       context: context,
-      builder: (context) => ColumnSlider(
-        totalColumns: column,
+      builder: (context) => Center(
+        child: SizedBox(
+          height: 200,
+          child: AlertDialog(
+            title: Text('Total Columns'),
+            content: Container(
+              child: Center(
+                child: CupertinoSlider(
+                  value: column,
+                  onChanged: (value) {
+                    setState(() {
+                      column = value;
+                    });
+                  },
+                  max: 100,
+                  min: 0,
+                  divisions: 4,
+                ),
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  // Use the second argument of Navigator.pop(...) to pass
+                  // back a result to the page that opened the dialog
+                  Navigator.pop(context, column);
+                },
+                child: Text('DONE'),
+              )
+            ],
+          ),
+        ),
       ),
     );
 
@@ -162,9 +193,9 @@ class _DashboardHomePageState extends State<DashboardHomePage> {
       //     layout=1;
       //   });
       //   break;
-      case 2:
-        _showTotalColumnPickerDialog();
-        break;
+      // case 2:
+      //   _showTotalColumnPickerDialog();
+      //   break;
     }
   }
 

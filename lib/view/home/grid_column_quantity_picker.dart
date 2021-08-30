@@ -7,13 +7,15 @@ class ColumnSlider extends StatefulWidget {
   @override
   _ColumnSliderState createState() => _ColumnSliderState();
 }
+
 class _ColumnSliderState extends State<ColumnSlider> {
   double? _totalColumns;
   @override
   void initState() {
-    _totalColumns=widget.totalColumns;
+    _totalColumns = widget.totalColumns;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Center(

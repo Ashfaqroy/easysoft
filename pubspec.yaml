@@ -27,6 +27,9 @@ dependencies:
   country_code_picker: ^2.0.2
   flutter_signin_button: ^2.0.0
   flutter_calendar_carousel: ^2.0.3
+  seekbar: ^0.0.2
+  carousel_slider: ^4.0.0
+  
 
 
   # The following adds the Cupertino Icons font to your application.
